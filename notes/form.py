@@ -1,5 +1,7 @@
 from django import forms
 from .models import Note
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class NoteForm(forms.ModelForm):
@@ -18,3 +20,25 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['title', 'content']
+
+
+class RegisterForm(UserCreationForm):
+    """
+    Form for registering a new user account.
+    Inherits from Django's built-in UserCreationForm and adds an email field.
+    """
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def save(self, commit=True):
+        """
+        Save the provided password in hashed format and save the email field.
+        """
+        user = super(RegisterForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user

@@ -2,7 +2,8 @@
 
 ## Overview
 
-This is a Django-based sticky notes application that allows users to create, edit, delete, and view sticky notes. Users can also post on a bulletin board.
+This is a Django-based sticky notes application that allows users to create,
+edit, delete, and view sticky notes. Users can also post on a bulletin board.
 
 ## Features
 

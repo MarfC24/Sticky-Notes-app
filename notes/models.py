@@ -3,6 +3,21 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+class Author(models.Model):
+    """
+    Represents an author of a note.
+    Attributes:
+        name (str): The name of the author.
+    """
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        """
+        Returns the string representation of the Author.
+        """
+        return self.name
+
+
 class Note(models.Model):
     """
     Represents a note created by a user.
@@ -31,4 +46,7 @@ class Note(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
+        """
+        Returns the string representation of the Author.
+        """
         return self.title
